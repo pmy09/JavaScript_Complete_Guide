@@ -1,6 +1,6 @@
 const defaultResult = 0;
 let currentResult = defaultResult;
-
+let logEntries = [];
 // This is a comment!
 
 /* this is another comment
@@ -24,6 +24,8 @@ function add(){
     //alert(currentResult++);
     //alert(++currentResult);
     createAndWriteOutput('+', initialResult, enteredNumber);
+    logEntries.push(enteredNumber);
+    console.log(logEntries[0]);
 };
 
 function subtract(){ 
