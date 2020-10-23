@@ -31,6 +31,7 @@ function add(){
         result: currentResult
     };
     logEntries.push(logEntry);
+    console.log(logEntry.operation)
     console.log(logEntries);
 };
 
