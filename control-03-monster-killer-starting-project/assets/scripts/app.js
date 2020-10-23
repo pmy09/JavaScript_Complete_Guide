@@ -230,11 +230,29 @@ function printLogHandler(){
     for (let x = 0; x < 3; x++){
         console.log('--------');
     }
+    // FOR LOOP
     /*for (let x = 10; x > 0;){
         x--;
         console.log(x);
     }*/
-    console.log(battleLog);
+    /*for (let x = 0; x < battleLog.length; x++){
+        console.log(battleLog[x]);
+    }*/
+    let i = 0;
+    // FOR-OF LOOP
+    for (const element of battleLog){
+        //console.log(element);
+        //console.log(i);
+        
+        console.log(`#${i}`);
+        // FOR-IN LOOP
+        for (const key in element){
+            //console.log(key);
+            //console.log(element[key]);
+            console.log(`${key} => ${element[key]}`);
+        }
+        i++
+    }
 }
 
 attackBtn.addEventListener('click', attackHandler);
