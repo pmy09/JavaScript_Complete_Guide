@@ -15,6 +15,7 @@ const enteredValue = prompt('Set max life', '100');
 
 let chosenMaxLife = parseInt(enteredValue);
 let battleLog = [];
+let lastLogEntry;
 
 if (isNaN(chosenMaxLife) || chosenMaxLife <= 0){
     chosenMaxLife = 100;
@@ -251,17 +252,21 @@ function printLogHandler(){
     let i = 0;
     // FOR-OF LOOP
     for (const element of battleLog){
-        //console.log(element);
-        //console.log(i);
+        if (!lastLogEntry && lastLogEntry !== 0 || lastLogEntry < i){
+            //console.log(element);
+            //console.log(i);
         
-        console.log(`#${i}`);
-        // FOR-IN LOOP
-        for (const key in element){
-            //console.log(key);
-            //console.log(element[key]);
-            console.log(`${key} => ${element[key]}`);
+            console.log(`#${i}`);
+            // FOR-IN LOOP
+            for (const key in element){
+                //console.log(key);
+                //console.log(element[key]);
+                console.log(`${key} => ${element[key]}`);
+            }
+            lastLogEntry = i;
+            break;
         }
-        i++
+        i++;
     }
 }
 
