@@ -35,6 +35,21 @@ function writeToLog(
     }
 
 function calculateResult(calculationType){
+    if (
+        calculationType !== 'ADD' &&
+        calculationType !== 'SUBTRACT' &&
+        calculationType !== 'MULTIPLY' &&
+        calculationType !== 'DIVIDE'
+    ){
+        return;
+    }
+
+    /*if (
+        calculationType === 'ADD' ||
+        calculationType === 'SUBTRACT' ||
+        calculationType === 'MULTIPLY' ||
+        calculationType === 'DIVIDE'
+    ){*/
     const enteredNumber = parseInt(userInput.value);
     const initialResult = currentResult;
     let mathOperator;
@@ -47,13 +62,14 @@ function calculateResult(calculationType){
     } else if (calculationType === 'MULTIPLY'){
         currentResult *= enteredNumber;
         mathOperator = '*';
-    } else {
+    } else if (calculationType === 'DIVIDE'){
         currentResult /= enteredNumber;
         mathOperator = '/';
     }
 
     createAndWriteOutput(mathOperator, initialResult, enteredNumber);
     writeToLog(calculationType,initialResult, enteredNumber, currentResult);
+    //};
 }
 
 function add(){
