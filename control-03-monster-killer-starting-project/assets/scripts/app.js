@@ -230,6 +230,16 @@ function printLogHandler(){
     for (let x = 0; x < 3; x++){
         console.log('--------');
     }
+    let j = 0;
+    do {
+        console.log(j);
+        j++
+    } while (j < 3);
+    /*let j = 0
+    while (j < 3){
+        console.log('--------');
+        j++;
+    }*/
     // FOR LOOP
     /*for (let x = 10; x > 0;){
         x--;
