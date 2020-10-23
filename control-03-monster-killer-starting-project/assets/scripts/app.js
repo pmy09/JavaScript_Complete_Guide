@@ -24,7 +24,16 @@ function getMaxLifeValue(){
     return parsedValue;
 }
 
-let chosenMaxLife = getMaxLifeValue();
+let chosenMaxLife;
+
+try {
+    chosenMaxLife = getMaxLifeValue();
+} catch (error){
+    console.log(error);
+    chosenMaxLife = 100; // fallback
+    alert('Invalid input, default value of 100 set');
+    //throw error;
+} //finally {} // used when there is no fallback like we have here
 
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
