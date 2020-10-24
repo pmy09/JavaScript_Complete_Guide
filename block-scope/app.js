@@ -1,4 +1,4 @@
-let name = 'Max';
+/*let name = 'Max';
 
 if (name === 'Max') {
   //var hobbies = ['Sports', 'Cooking'];
@@ -14,4 +14,9 @@ function greet() {
 
 console.log(name, hobbies);
 
-greet();
+greet();*/
+
+console.log(userName);
+
+var userName = 'Max'; // works 
+//let userName = 'Max'; // 'let' declaration must come before the call
