@@ -1,4 +1,4 @@
-const h1 = document.getElementById('main-title');
+/*const h1 = document.getElementById('main-title');
 
 h1.textContent = 'Some new title!';
 h1.style.color = 'white';
@@ -14,4 +14,9 @@ const listItemElements = document.getElementsByTagName('li');
 
 for (const listItemEL of listItemElements){
     console.dir(listItemEL);
-}
+}*/
+
+const ul = document.body.firstElementChild.nextElementSibling;
+const firstLi = ul.firstElementChild;
+
+console.log(firstLi);
