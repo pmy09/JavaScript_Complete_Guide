@@ -16,7 +16,11 @@ console.log(name, hobbies);
 
 greet();*/
 
+'use strict';
+
+const userName = 'Max'
+//var undefined = 5 // won't work with strict mode
 console.log(userName);
 
-var userName = 'Max'; // works 
-//let userName = 'Max'; // 'let' declaration must come before the call
+//var userName = 'Max'; // works 
+//let userName = 'Max'; // 'let' and 'const' declaration must come before the call
