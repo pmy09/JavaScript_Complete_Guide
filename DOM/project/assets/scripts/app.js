@@ -4,3 +4,8 @@
 const startAddMovieBtn = document.querySelector('header button');
 // startAddMovieBtn = document.querySelector('header').lastElementChild;
 
+function toggleMovieModal(){
+    addMovieModal.classList.toggle('visible');
+};
+
+startAddMovieBtn.addEventListener('click', toggleMovieModal());
