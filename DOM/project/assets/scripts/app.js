@@ -23,7 +23,7 @@ function updatePage(){
     }
 };
 
-function deleteMovie(movieId){
+function deleteMovieHandler(movieId){
     let movieIndex = 0
     for (const movie of movies){
         if (movie.id === movieId){
@@ -42,10 +42,15 @@ function cancelMovieDeletion(){
     deleteMovieModal.classList.remove('visible');
 }
 
-function deleteMovieHandler(movieId){
+function startDeleteMovieHandler(movieId){
     deleteMovieModal.classList.add('visible');
     toggleBackdrop();
-    //deleteMovie(movieId);
+    const cancelDeletionBtn = deleteMovieModal.querySelector('.btn--passive');
+    const confirmDeletionBtn = deleteMovieModal.querySelector('.btn--danger');
+    
+    cancelDeletionBtn.addEventListener('click', cancelMovieDeletion);
+    confirmDeletionBtn.addEventListener('click', deleteMovieHandler.bind(null, movieId));
+    //deleteMovieHandler(movieId);
 };
 
 function renderNewMovieElement(id, title, imageUrl, rating){
@@ -60,7 +65,7 @@ function renderNewMovieElement(id, title, imageUrl, rating){
             <p>${rating}/5 stars</p>
         </div>
     `;
-    newMovieElement.addEventListener('click', deleteMovieHandler.bind(null, id));
+    newMovieElement.addEventListener('click', startDeleteMovieHandler.bind(null, id));
     const movieList = document.getElementById('movie-list');
     movieList.append(newMovieElement);
 };
