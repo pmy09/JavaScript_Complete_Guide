@@ -11,6 +11,7 @@ const addMovieBtn = addMovieModal.querySelector('.btn--success');
 const userInputs = addMovieModal.getElementsByTagName('input');
 //const userInputs = addMovieModal.querySelectorAll('input');
 const entryTextSection = document.getElementById('entry-text');
+const deleteMovieModal = document.getElementById('delete-modal');
 
 const movies = [];
 
@@ -22,7 +23,32 @@ function updatePage(){
     }
 };
 
-function renderNewMovieElement(title, imageUrl, rating){
+function deleteMovie(movieId){
+    let movieIndex = 0
+    for (const movie of movies){
+        if (movie.id === movieId){
+            break;
+        }
+        movieIndex++;
+    }
+    movies.splice(movieIndex, 1);
+    const movieList = document.getElementById('movie-list');
+    movieList.children[movieIndex].remove();
+    //movieList.removeChild(movieList.children[movieIndex]);
+};
+
+function cancelMovieDeletion(){
+    toggleBackdrop();
+    deleteMovieModal.classList.remove('visible');
+}
+
+function deleteMovieHandler(movieId){
+    deleteMovieModal.classList.add('visible');
+    toggleBackdrop();
+    //deleteMovie(movieId);
+};
+
+function renderNewMovieElement(id, title, imageUrl, rating){
     const newMovieElement = document.createElement('li');
     newMovieElement.className = 'movie-element';
     newMovieElement.innerHTML = `
@@ -34,6 +60,7 @@ function renderNewMovieElement(title, imageUrl, rating){
             <p>${rating}/5 stars</p>
         </div>
     `;
+    newMovieElement.addEventListener('click', deleteMovieHandler.bind(null, id));
     const movieList = document.getElementById('movie-list');
     movieList.append(newMovieElement);
 };
@@ -42,8 +69,12 @@ function toggleBackdrop(){
     backdrop.classList.toggle('visible');
 };
 
-function toggleMovieModal(){
-    addMovieModal.classList.toggle('visible');
+function closeMovieModal(){
+    addMovieModal.classList.remove('visible');
+};
+
+function showMovieModal(){
+    addMovieModal.classList.add('visible');
     toggleBackdrop();
 };
 
@@ -54,7 +85,7 @@ function clearMovieInputs(){
 };
 
 function cancelAddMovieHandler(){
-    toggleMovieModal();
+    closeMovieModal();
     clearMovieInputs();
 };
 
@@ -74,23 +105,27 @@ function addMovieHandler(){
         return;
     }
     const newMovie = {
+        id: Math.random().toString(),
         title: titleValue,
         image: imageUrlValue,
         rating: ratingValue
     };
     movies.push(newMovie);
     console.log(movies);
-    toggleMovieModal();
+    closeMovieModal();
+    toggleBackdrop();
     clearMovieInputs();
-    renderNewMovieElement(newMovie.title, newMovie.image, newMovie.rating);
+    renderNewMovieElement(newMovie.id, newMovie.title, newMovie.image, newMovie.rating);
     updatePage();
 };
 
 function backdropClickHandler(){
-    toggleMovieModal();
+    closeMovieModal();
+    cancelMovieDeletion();
 };
 
-startAddMovieBtn.addEventListener('click', toggleMovieModal);
+startAddMovieBtn.addEventListener('click', showMovieModal);
 backdrop.addEventListener('click', backdropClickHandler);
 cancelAddMovieBtn.addEventListener('click', cancelAddMovieHandler);
 addMovieBtn.addEventListener('click', addMovieHandler);
+
