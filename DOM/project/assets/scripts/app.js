@@ -10,6 +10,33 @@ const addMovieBtn = addMovieModal.querySelector('.btn--success');
 //const addMovieBtn = cancelAddMovieBtn.nextElementSibling;
 const userInputs = addMovieModal.getElementsByTagName('input');
 //const userInputs = addMovieModal.querySelectorAll('input');
+const entryTextSection = document.getElementById('entry-text');
+
+const movies = [];
+
+function updatePage(){
+    if (movies.length === 0){
+        entryTextSection.style.display = 'block';
+    } else {
+        entryTextSection.style.display = 'none';
+    }
+};
+
+function renderNewMovieElement(title, imageUrl, rating){
+    const newMovieElement = document.createElement('li');
+    newMovieElement.className = 'movie-element';
+    newMovieElement.innerHTML = `
+        <div class="movie-element_image">
+            <img src="${imageUrl}" alt="${title}">
+        </div>
+        <div class="movie_element_info">
+            <h2>${title}</h2>
+            <p>${rating}/5 stars</p>
+        </div>
+    `;
+    const movieList = document.getElementById('movie-list');
+    movieList.append(newMovieElement);
+};
 
 function toggleBackdrop(){
     backdrop.classList.toggle('visible');
@@ -20,8 +47,15 @@ function toggleMovieModal(){
     toggleBackdrop();
 };
 
+function clearMovieInputs(){
+    for ( const usrInput of userInputs){
+        usrInput.value = '';
+    }
+};
+
 function cancelAddMovieHandler(){
     toggleMovieModal();
+    clearMovieInputs();
 };
 
 function addMovieHandler(){
@@ -39,6 +73,17 @@ function addMovieHandler(){
         alert('Please enter valid input! (rating between 1 and 5');
         return;
     }
+    const newMovie = {
+        title: titleValue,
+        image: imageUrlValue,
+        rating: ratingValue
+    };
+    movies.push(newMovie);
+    console.log(movies);
+    toggleMovieModal();
+    clearMovieInputs();
+    renderNewMovieElement(newMovie.title, newMovie.image, newMovie.rating);
+    updatePage();
 };
 
 function backdropClickHandler(){
