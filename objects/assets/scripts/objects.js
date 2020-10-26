@@ -46,7 +46,7 @@ function addMovieHandler(){
       [extraName]: extraValue
     },
     id: Math.random().toString(),
-    getFormattedTitile: function(){
+    getFormattedTitile(){
       return this.info.title.toUpperCase();
     }
   };
