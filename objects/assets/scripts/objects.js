@@ -24,7 +24,7 @@ function renderMovies(filter = ''){
     //getFormattedTitile = getFormattedTitile.bind(movie);
     let text = getFormattedTitile.call(movie) + ' - ';
     for (const key in info){
-      if (key !== 'title'){
+      if (key !== 'title' && key !== '_title'){
         text = text + `${key}: ${info[key]}`;
       }
     }
@@ -38,19 +38,37 @@ function addMovieHandler(){
   const extraName = document.getElementById('extra-name').value;
   const extraValue = document.getElementById('extra-value').value;
 
-  if (title.trim() === '' || extraName.trim() === '' || extraValue.trim === '') {
+  /*if (title.trim() === '' || extraName.trim() === '' || extraValue.trim === '') {
+    return;
+  }*/
+  if (extraName.trim() === '' || extraValue.trim === '') {
     return;
   }
   const newMovie = {
     info: {
-      title,
+      set title(val){
+        if (val.trim() === ''){
+          this.title = 'DEFAULT';
+          return;
+        }
+        this._title = val;
+      },
+      get title(){
+        return this._title;
+      },
+      //title,
       [extraName]: extraValue
     },
     id: Math.random().toString(),
-    getFormattedTitile(){
+    getFormattedTitile() {
+      console.log(this);
       return this.info.title.toUpperCase();
     }
   };
+  newMovie.info.title = title;
+  console.log(newMovie.info.title);
+
+
   movies.push(newMovie);
   console.log(newMovie);
   renderMovies();
