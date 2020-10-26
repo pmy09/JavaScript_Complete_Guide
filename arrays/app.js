@@ -52,3 +52,7 @@ const storedResults = testResults.concat([3.99, 2]);
 testResults.push(5.91);
 
 console.log(storedResults, testResults);
+console.log(testResults.indexOf(1.5));
+
+const personData = [{name: 'Max'}, {name: 'Manuel'}];
+console.log(personData.indexOf({name: 'Manuel'})); // indexOf doesn't work on objects
