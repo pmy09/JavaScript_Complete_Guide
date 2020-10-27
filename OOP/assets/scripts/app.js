@@ -20,9 +20,14 @@ class ElementAttribute {
 }
 
 class Component {
-    constructor(renderHookId){
+    constructor(renderHookId, shouldRender = true){
         this.hookId = renderHookId;
+        if (shouldRender){
+            this.render();
+        }   
     }
+    render(){};
+
     createRootElement(tag, cssClasses, attributes){
         const rootElement = document.createElement(tag);
         if (cssClasses){
@@ -75,8 +80,9 @@ constructor(renderHookId){
 
 class ProductItem extends Component {
     constructor(product, renderHookId) {
-        super(renderHookId);
+        super(renderHookId, false);
         this.product = product;
+        this.render()
     }
 
     addToCart(){
@@ -102,43 +108,53 @@ class ProductItem extends Component {
 }
 
 class ProductList extends Component {
-    products = [
-        new Product(
-            'A Pillow',
-            'https://thumb.maxpixel.net/50/Sleep-Bedtime-Pillow-Bedroom-Dream-Comfortable-1738023.jpg',
-            'A soft pillow',
-            19.99
-        ),
-        new Product(
-            'A Carpet',
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flower_carpet_Pookkalam_Onappookkalam_at_Nithyananda_Ashram_Hosdurg_2019.jpg/120px-Flower_carpet_Pookkalam_Onappookkalam_at_Nithyananda_Ashram_Hosdurg_2019.jpg',
-            'A carpet you might like',
-            89.99
-        )
-    ];
+    products = [];
 
     constructor(renderHookId){
         super(renderHookId);
+        this.fetchProducts();
+    }
+
+    fetchProducts() {
+        this.products = [
+            new Product(
+                'A Pillow',
+                'https://thumb.maxpixel.net/50/Sleep-Bedtime-Pillow-Bedroom-Dream-Comfortable-1738023.jpg',
+                'A soft pillow',
+                19.99
+            ),
+            new Product(
+                'A Carpet',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flower_carpet_Pookkalam_Onappookkalam_at_Nithyananda_Ashram_Hosdurg_2019.jpg/120px-Flower_carpet_Pookkalam_Onappookkalam_at_Nithyananda_Ashram_Hosdurg_2019.jpg',
+                'A carpet you might like',
+                89.99
+            )
+        ];
+        this.renderProducts();
+    }
+
+    renderProducts(){
+        for (const prod of this.products) {
+            new ProductItem(prod, 'prod-list');
+        }
     }
 
     render(){
         this.createRootElement('ul', 'product list', [new ElementAttribute('id','prod-list')]);
-        for (const prod of this.products) {
-            const productItem = new ProductItem(prod, 'prod-list');
-            // const prodEl = productItem.render();
-            // prodList.append(prodEl);
-            productItem.render();
+        if (this.products && this.products.length > 0){
+            this.renderProducts();
         }
     }
 }
 
-class Shop {
+class Shop extends Component{
+    constructor(){
+        super();
+    }
     render() {
         //const renderHook = document.getElementById('app');
         this.cart = new ShoppingCart('app');
-        this.cart.render();
         const productList = new ProductList('app');
-        productList.render();
     }
 }
 
@@ -147,7 +163,6 @@ class App {
 
     static init() {
         const shop = new Shop();
-        shop.render();
         this.cart = shop.cart;
     }
 
