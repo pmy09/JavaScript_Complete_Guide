@@ -15,13 +15,19 @@ class Product {
 class ShoppingCart {
     items = [];
 
+    addProduct(product){
+        this.items.push(product);
+        this.totalOutput = `<h2>Total: \$${1}</h2>`
+    }
+
     render(){
         const cartEl = document.createElement('section');
         cartEl.innerHTML = `
-            <h1>Total: \$${0}</h2>
+            <h2>Total: \$${0}</h2>
             <button>Order Now!</button>
         `;
         cartEl.className = 'cart';
+        this.totalOutput = cartEl.querySelector('h2');
         return cartEl;
     }
 }
