@@ -31,6 +31,8 @@ class ProjectList {
 
 
 class ProjectItem {
+    hasActiveToolTip = false;
+
     constructor(id, updateProjectListsFunction, type) {
         this.id = id;
         this.updateProjectListsHandler = updateProjectListsFunction;
@@ -38,7 +40,22 @@ class ProjectItem {
         this.connectSwitchButton(type);
     }
 
-    connectMoreInfoButton() {}
+    showMoreInfoHandler() {
+        if (this.hasActiveToolTip){
+            return;
+        }
+        const tooltip = new ToolTip(() => {
+            this.hasActiveToolTip = false;
+        });
+        tooltip.attach();
+        this.hasActiveToolTip = true;
+    }
+
+    connectMoreInfoButton() {
+        const projectItemElement = document.getElementById(this.id);
+        const moreInfoBtn = projectItemElement.querySelector('button:first-of-type');
+        moreInfoBtn.addEventListener('click', this.showMoreInfoHandler);
+    }
 
     connectSwitchButton(type) {
         const projectItemElement = document.getElementById(this.id);
@@ -72,7 +89,30 @@ class DOMHelper {
 
 
 
-class ToolTip {}
+class ToolTip {
+    constructor(closeNotifierFunction) {
+        this.closeNotifier = closeNotifierFunction;
+    }
+
+    closeToolTip() {
+        this.detach();
+        this.closeNotifier();
+    }
+
+    detach() {
+        this.element.remove();
+        //this.element.parentElement.removeChild(this.element);
+    }
+
+    attach() {
+        const tooltipElement = document.createElement('div');
+        tooltipElement.className = 'card';
+        tooltipElement.textContent = 'Just Finish'
+        tooltipElement.addEventListener('click', this.closeToolTip.bind(this));
+        this.element = tooltipElement;
+        document.body.append(tooltipElement);
+    }
+}
 
 
 
