@@ -87,11 +87,32 @@ class DOMHelper {
     }
 }
 
+class Component {
+    constructor(hostElementId, insertBefore = false) {
+        if (hostElementId) {
+            this.hostElement = document.getElementById(hostElementId);
+        } else {
+            this.hostElement = document.body;
+        }
+        this.insertBefore = insertBefore;
+    }
+    detach() {
+        if (this.element) {
+            this.element.remove();
+            //this.element.parentElement.removeChild(this.element);
+        }
+    }
 
+    attach() {
+        this.hostElement.insertAdjacentElement(this.insertBefore ? 'afterbegin' : 'beforeend', this.element);
+    }
+}
 
-class ToolTip {
+class ToolTip extends Component {
     constructor(closeNotifierFunction) {
+        super();
         this.closeNotifier = closeNotifierFunction;
+        this.create();
     }
 
     closeToolTip() {
@@ -99,18 +120,12 @@ class ToolTip {
         this.closeNotifier();
     }
 
-    detach() {
-        this.element.remove();
-        //this.element.parentElement.removeChild(this.element);
-    }
-
-    attach() {
+    create() {
         const tooltipElement = document.createElement('div');
         tooltipElement.className = 'card';
         tooltipElement.textContent = 'Just Finish'
         tooltipElement.addEventListener('click', this.closeToolTip.bind(this));
         this.element = tooltipElement;
-        document.body.append(tooltipElement);
     }
 }
 
