@@ -36,3 +36,5 @@ const person = new Person();
 person.greet();
 person.printAge();
 console.log(person.__proto__);
+const p = new person.__proto__.constructor();
+console.log(p);
