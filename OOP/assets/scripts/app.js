@@ -3,27 +3,31 @@ class Product {
     imageUrl;
     description;
     price;
+
+    constructor(title, image, desc, price){
+        this.title = title;
+        this.imageUrl = image;
+        this.description = desc;
+        this.price = price;
+    }
 }
 
 console.log(new Product);
 
 const productList = {
     products: [
-        //new Product(),
-        {
-            title: 'A Pillow',
-            imageUrl: 
-                'https://thumb.maxpixel.net/50/Sleep-Bedtime-Pillow-Bedroom-Dream-Comfortable-1738023.jpg',
-            price: 19.99,
-            description: 'A soft pillow'
-        },
-        {
-            title: 'A Carpet',
-            imageUrl: 
-                'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flower_carpet_Pookkalam_Onappookkalam_at_Nithyananda_Ashram_Hosdurg_2019.jpg/120px-Flower_carpet_Pookkalam_Onappookkalam_at_Nithyananda_Ashram_Hosdurg_2019.jpg',
-            price: 89.99,
-            description: 'A carpet you might like'
-        }
+        new Product(
+            'A Pillow',
+            'https://thumb.maxpixel.net/50/Sleep-Bedtime-Pillow-Bedroom-Dream-Comfortable-1738023.jpg',
+            'A soft pillow',
+            19.99
+        ),
+        new Product(
+            'A Carpet',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flower_carpet_Pookkalam_Onappookkalam_at_Nithyananda_Ashram_Hosdurg_2019.jpg/120px-Flower_carpet_Pookkalam_Onappookkalam_at_Nithyananda_Ashram_Hosdurg_2019.jpg',
+            'A carpet you might like',
+            89.99
+        ),
     ],
     render(){
         const renderHook = document.getElementById('app');
