@@ -78,7 +78,15 @@ button.addEventListener('click', event => {
     event.stopPropagation();
     console.log('CLICKED BUTTON');
     console.log(event);
+    console.log(this);  // points to the browser window
 });
+
+// button.addEventListener('click', function(event) {
+//     event.stopPropagation();
+//     console.log('CLICKED BUTTON');
+//     console.log(event);
+//     console.log(this);  // points to the button
+// });
 
 const listItems = document.querySelectorAll('li');
 const list = document.querySelector('ul');
@@ -95,4 +103,5 @@ list.addEventListener('click', event => {
     event.target.closest('li').classList.toggle('highlight');
     //form.submit();
     button.click();
+    console.log(this);
     });
