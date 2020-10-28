@@ -5,4 +5,5 @@ const intervalId = setInterval(() => {
 
 document.getElementById('stop-analytics-btn').addEventListener('click', () => {
     clearInterval(intervalId);
+    //location.href = 'https://academind.com'; // transports you to the new page.
 });
