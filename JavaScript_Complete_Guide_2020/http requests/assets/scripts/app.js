@@ -36,8 +36,19 @@ async function fetchPosts() {
     }
 };
 
-fetchPosts();
+async function createPost(title, content) {
+    const userId = Math.random();
+    const post = {
+        title: title,
+        body: content,
+        userId: userId
+    };
+  
+    sendHttpRequest('POST', 'https://jsonplaceholder.typicode.com/posts', post);
+}
 
+fetchPosts();
+createPost('DUMMY', 'A dummy post!');
 
 
     
