@@ -4,10 +4,12 @@ const output = document.querySelector('p');
 const getPosition = opts => {
     const promise = new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
-        success => {
+        (success) => {
           resolve(success);
         },
-        error => {},
+        (error) => {
+            reject(error);
+        },
         opts
       );
     });
@@ -29,6 +31,10 @@ function trackUserHandler() {
       .then(posData => {
         positionData = posData;
         return setTimer(2000);
+      })
+      .catch((err) => {
+        console.log(err);
+        return 'on we go...';
       })
       .then(data => {
         console.log(data, positionData);
