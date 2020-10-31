@@ -7,6 +7,8 @@
     <title>Share a Place</title>
     <link rel="stylesheet" href="assets/styles/app.css" />
     <link rel="stylesheet" href="assets/styles/share-place.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
     <script src="assets/scripts/SharePlace.js" defer></script>
   </head>
   <body>
@@ -26,10 +28,10 @@
 
     <section id="selected-place">
       <div id="map">
-        <p>
+        <!-- <p>
           You haven't selected any place yet. Please enter an address or locate
           yourself!
-        </p>
+        </p> -->
       </div>
     </section>
 
@@ -51,5 +53,6 @@
       </form>
       <button id="locate-btn">Get Current Location</button>
     </section>
+    <!-- <div id="nearplace-root" style="position:relative"><img id="nearplace-logo" style="position: absolute;top:50%;left:50%;transform:translateX(-50%) translateY(-50%);z-index:-1;" src="https://api.nearplace.com/images/logo.png"><div id="nearplace-contribution" style="position:absolute;bottom:0;right:0;font-size:11px;color:#000;letter-spacing:normal;">map by&nbsp;<a href="https://nearplace.com" target="_blank">nearplace.com</a></div></div><script>var _nearplace=_nearplace||{};_nearplace.organization='cf268212-b9ea-4f41-b2db-ffb87294da04';_nearplace.onpage='020d71a9-c6a5-4025-ae11-4071f9b4a5d4';window.nearplace||function(){var s=document.createElement('script');s.type='text/javascript';s.async=!0;s.src='https://widget.nearplace.com/loader-onpage.js';document.addEventListener("DOMContentLoaded",function(){(document.scripts[0]||document.head).appendChild(s)})}();</script> -->
   </body>
 </html>
