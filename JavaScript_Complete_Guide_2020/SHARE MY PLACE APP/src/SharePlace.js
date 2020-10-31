@@ -1,3 +1,5 @@
+import { Modal } from './UI/Modal';
+
 class PlaceFinder {
     constructor() {
         const addressForm = document.querySelector('form');
@@ -14,9 +16,12 @@ class PlaceFinder {
             );
             return;
         }
+        const modal = new Modal('loading-modal-content', 'Loading location - please wait!');
+        modal.show();
         navigator.geolocation.getCurrentPosition(
             successResult => {
                 console.log(successResult);
+                modal.hide();
                 const coordinates = {
                     lat: successResult.coords.latitude + Math.random() * 50, // Math.random not required
                     lng: successResult.coords.longitude + Math.random() * 50, // used to hide Max's location
@@ -24,6 +29,7 @@ class PlaceFinder {
                 console.log(coordinates);
             },
             error => {
+                modal.hide();
                 alert(
                     'Could not locate you unfortunately. Please enter an address manually!'
                 );
