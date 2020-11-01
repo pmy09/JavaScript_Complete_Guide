@@ -13,7 +13,7 @@ router.post('/add-location', (req, res, next) => {
     address: req.body.address,
     coords: { lat: req.body.lat, lng: req.body.lng }
   });
-  res.json({message: 'Stored location!'});
+  res.json({message: 'Stored location!', locId: id});
 });
 
 router.get('/location', (req, res, next) => {});
