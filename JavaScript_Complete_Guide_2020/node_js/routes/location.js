@@ -5,7 +5,7 @@ const MongoClient = mongodb.MongoClient;
 const router = express.Router();
 
 const url =
-  'mongodb+srv://pmy:pmy.mongodb@cluster0.gc7bx.mongodb.net/locations?retryWrites=true&w=majority';
+  'mongodb+srv://pmy:<password>@cluster0.gc7bx.mongodb.net/locations?retryWrites=true&w=majority';
 
 const client = new MongoClient(url);
 
