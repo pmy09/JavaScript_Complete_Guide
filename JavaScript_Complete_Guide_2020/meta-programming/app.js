@@ -87,10 +87,23 @@ Reflect.setPrototypeOf(course, {
     }
 });
   
-Reflect.deleteProperty(course, 'title');
+//Reflect.deleteProperty(course, 'title');
   
 // Object.deleteProperty(course, 'title');
   
 // delete course.title;
   
 console.log(course);
+
+const courseHandler = {
+    get(obj, propertyName) {
+        console.log(propertyName);
+        if (propertyName === 'length') {
+            return 0;
+        }
+        return obj[propertyName] || 'NOT FOUND';
+    }
+};
+  
+const pCourse = new Proxy(course, courseHandler);
+console.log(pCourse.title, pCourse.length, pCourse.rating);
