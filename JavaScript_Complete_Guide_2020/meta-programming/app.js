@@ -60,14 +60,17 @@ const company = {
 
 for (const employee of company) {
     console.log(employee);
-  }
+}
   
-  console.log([...company]);
+// console.log([...company]);
   
-  // const it = company.getEmployee();
+// const it = company.getEmployee();
   
-  // console.log(it.next());
-  // console.log(it.next());
-  // console.log(it.next());
-  // console.log(it.next());
-  // console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+
+const persons = ['Max', 'Manu'];
+console.log(persons);
