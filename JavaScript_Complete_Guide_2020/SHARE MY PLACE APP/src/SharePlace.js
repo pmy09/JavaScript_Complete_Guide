@@ -51,12 +51,14 @@ class PlaceFinder {
             return response.json();
         })
         .then(data => {
+            const locationId = data.locId;
             console.log(data);
+            this.shareBtn.disabled = false;
+            const sharedLinkInputElement = document.getElementById('share-link');
+            sharedLinkInputElement.value = `${location.origin}/my-place?location=${locationId}`;
         });
-        this.shareBtn.disabled = false;
-        const sharedLinkInputElement = document.getElementById('share-link');
-        sharedLinkInputElement.value = `${location.origin}/my-place?address=${encodeURI(address)}&lat=${coordinates.lat}&lng=${coordinates.lng}`;
-    }
+    };
+        
   
     locateUserHandler() {
         if (!navigator.geolocation) {
