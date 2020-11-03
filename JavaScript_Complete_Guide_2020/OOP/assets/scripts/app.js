@@ -137,6 +137,12 @@ class ProductList extends Component {
                 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flower_carpet_Pookkalam_Onappookkalam_at_Nithyananda_Ashram_Hosdurg_2019.jpg/120px-Flower_carpet_Pookkalam_Onappookkalam_at_Nithyananda_Ashram_Hosdurg_2019.jpg',
                 'A carpet you might like',
                 89.99
+            ),
+            new Product(
+                'A Ferrari',
+                `https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ferrari-Monaco-4071008.jpg/800px-Ferrari-Monaco-4071008.jpg`,
+                'A nice car you may be interested in',
+                120000
             )
         ];
         this.renderProducts();
